@@ -8,6 +8,8 @@ import os
 import sys
 import time
 
+from fastapi import Depends
+
 from PIL import Image, PngImagePlugin
 from diffusers import FluxTransformer2DModel, FluxPipeline
 from loguru import logger
@@ -289,7 +291,7 @@ async def enhance_prompt(prompt: str, **enhancer) -> str:
     return resp.choices[0].message.content
 
 
-@app.post("/v1/images/generations")
+@app.post("/v1/images/generations", dependencies=[Depends(openedai.validate_token)])
 async def generations(request: GenerationsRequest):
     resp = {
         'created': int(time.time() * 1000),
