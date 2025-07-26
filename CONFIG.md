@@ -138,7 +138,7 @@ A simple `enhancer.json` may look like this (examples tend to work well):
 
 ```json
 {
-  "model": "gpt-3.5-turbo",
+  "model": "requrv-ai",
   "messages": [
     {"role": "system", "content": "You are an AI prompt enhancer for image generation AI models, when given a description of an image, be creative and enhance the description to make the image better. No yapping, just output the best enhanced image prompt you can."},
     {"role": "user", "content": "photo of an ancient castle very atmospheric"},
