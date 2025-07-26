@@ -13,6 +13,8 @@ security = HTTPBearer()
 
 
 def validate_token(api_key_header: str = Security(security)):
+    print("D", api_key_header)
+    print("D", API_KEY)
     if api_key_header != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid token")
     return True
