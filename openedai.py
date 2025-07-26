@@ -12,10 +12,10 @@ API_KEY = os.getenv("API_KEY")  # Legge la chiave segreta dal file .env
 security = HTTPBearer()
 
 
-def validate_token(api_key_header: str = Security(security)):
+def validate_token(api_key_header = Security(security)):
     print("D", api_key_header)
     print("D", API_KEY)
-    if api_key_header != API_KEY:
+    if api_key_header.credentials != API_KEY:
         raise HTTPException(status_code=401, detail="Invalid token")
     return True
 
