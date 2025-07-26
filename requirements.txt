@@ -12,3 +12,4 @@ python-multipart
 sentencepiece
 transformers
 uvicorn
+python-dotenv
