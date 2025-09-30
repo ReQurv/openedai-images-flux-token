@@ -439,6 +439,8 @@ async def generations(request: GenerationsRequest):
                     presigned_url = create_presigned_url(
                         code + "/" + str(seed) + ".png", expiration=3600
                     )
+
+                    print("Presigned URL: ", presigned_url)
                     
                     img_dat = {
                         "url": presigned_url
