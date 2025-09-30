@@ -419,9 +419,9 @@ async def generations(request: GenerationsRequest):
                     img.save("config/debug.png", pnginfo=pnginfo)
 
                 img_bytes = io.BytesIO()
-                # img.save(img_bytes, format='PNG', pnginfo=pnginfo)
+                img.save(img_bytes, format='PNG', pnginfo=pnginfo)
                 b64_json = base64.b64encode(img_bytes.getvalue()).decode("utf-8")
-                img_bytes.close()
+                img_bytes.seek(0)
 
                 if request.response_format == "b64_json":
                     img_dat = {"b64_json": b64_json}
@@ -431,7 +431,7 @@ async def generations(request: GenerationsRequest):
                     s3_client.put_object(
                         Bucket=os.environ.get("AWS_BUCKET"),
                         Key=code + "/" + str(seed) + ".png",
-                        Body=img,
+                        Body=img_bytes,
                         ContentType="image/png",
                     )
                     presigned_url = create_presigned_url(
