@@ -13,3 +13,4 @@ sentencepiece
 transformers
 uvicorn
 python-dotenv
+boto3
