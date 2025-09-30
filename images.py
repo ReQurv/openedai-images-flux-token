@@ -47,9 +47,7 @@ def create_presigned_url(object_key, expiration=3600):
     :param expiration: Time in seconds for the presigned URL to remain valid
     :return: Presigned URL as string. If error, returns None.
     """
-
-    # Generate a presigned URL for the S3 object
-    s3_client = boto3.client("s3")
+    
     try:
         response = s3_client.generate_presigned_url(
             "get_object",
