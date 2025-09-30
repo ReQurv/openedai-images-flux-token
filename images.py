@@ -431,7 +431,7 @@ async def generations(request: GenerationsRequest):
                     s3_client.put_object(
                         Bucket=os.environ.get("AWS_BUCKET"),
                         Key=code + "/" + str(seed) + ".png",
-                        Body=img_bytes.getvalue(),
+                        Body=img,
                         ContentType="image/png",
                     )
                     presigned_url = create_presigned_url(
